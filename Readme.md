@@ -17,7 +17,8 @@ Adding a Turbo-like capability to the application is as simple as:
 <body hx-boost='true'>
 ```
 
-This will turn all GET- and POST-firing tags into AJAX requests which rewrite the document body only.
+This will turn all GET- and POST-firing elements into AJAX requests which rewrite the document body completely.
+It doesn't rewrite the header, which has important implications for page-load responsiveness / feel.
 The responsibility of the backend service / app is to send back HTML payloads instead of JSON.
 
 Consider this code:
