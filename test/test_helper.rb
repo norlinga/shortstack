@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
@@ -7,17 +9,16 @@ Minitest::Reporters.use!
 
 require_relative '../app'
 
-class Minitest::Test
-  def setup
-    # Initialize test $redis to use a different Redis database
-    $redis = Redis.new(url: 'redis://localhost:6379/1')
-    
-    $redis.flushdb
-  end
+module Minitest
+  class Test
+    def setup
+      DB.flushdb
+    end
 
-  def teardown
-    $redis.flushdb
+    def teardown
+      DB.flushdb
+    end
   end
 end
 
-Dir[File.expand_path('../models/*.rb', __FILE__)].each { |file| require file }
+Dir[File.expand_path('models/*.rb', __dir__)].each { |file| require file }

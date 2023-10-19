@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-require_relative './models/todo'
-require_relative './middleware/validate_todo_middleware'
+require_relative 'models/todo'
+require_relative 'middleware/validate_todo_middleware'
+require_relative 'initializers/redis'
 
 use Rack::MethodOverride
 use ValidateTodoMiddleware
-
-$redis = Redis.new
 
 get '/' do
   @todo_counts = Todo.counts
