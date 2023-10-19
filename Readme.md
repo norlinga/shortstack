@@ -6,7 +6,7 @@ This is a playground for experimenting with HTMX.
 The structure of the playground is a simple todo app.
 I know.
 
-![App Screensho](public/app.png "Todo App Interface")
+![App Screenshot](public/app.png "Todo App Interface")
 
 ## HTMX is fun
 
@@ -31,18 +31,21 @@ Consider this code:
   ... />
 ```
 
-This breaks the 'boosting' described above and fires off a POST request to `/validate_todo`, with the form elements as the payload, placing whatever's returned in an element with the id '#errors', and doing it all on keyup with a debounce.
+This breaks the 'boosting' described above and fires off a POST request to `/validate_todo`.
+The form elements are the payload to the backend, and whatever's returned replaces the `innerHTML` of the element with the id '#errors'.
+This all takes place on `keyup` in the `<input>` element, with a debounce.
 The behavior of the wrapping form is unchanged when simply pressing enter on the keyboard or pressing the submit button in the form.
 
 ## Exploration
 
 Working out design patterns from example code is hard, hence this playground.
 I was interested to explore how middleware could be introduced into input validation, for example.
-If the page is simply expecting an textual response (could be a string to insert into innerHTML), the response could be super terse, and could come from anywhere in the stack, including request-interrupting middleware.
+If the page is simply expecting a textual response (could be a string to insert into innerHTML), the response could be super terse and could come from anywhere in the stack.
+Including request-interrupting middleware.
 There's a middleware active that demonstrates basic validation on a request before sending the request on to the app.
 Not sure that's useful as shown, but it was a fun thought experiment.
 
-Doing targetted page updates with view partials was an interesting exercise.
+Doing targeted page updates with view partials was an interesting exercise.
 The `swap-oob` feature is useful, as is polling.
 Left as a true "single page app", `index.erb` handles the whole thing in the current form.
 
