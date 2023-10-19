@@ -59,6 +59,8 @@ Responsiveness from the app is pretty astonishing as is, giving the app a very r
 [11/Oct/2023:11:50:47 -0700] "GET / HTTP/1.1" 200 4176 0.0019
 ```
 
-Single-digit millisecond responses are typical and fast enough.
+Single-digit millisecond responses are typical and fast enough to feel lagless and immediate.
+Notably, because of the body-targeted content loading, there's no page flash on update, which improves feel.
+
 That said, a Roda version was substantially faster.
 Switching to JIT or Truffleruby didn't do anything really impactful to performance on this trivial app.
