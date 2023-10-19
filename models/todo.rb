@@ -2,9 +2,27 @@
 
 require 'securerandom'
 
-# Todo is a model interacting with Redis.
-# initialized in initializers/redis.rb, presumes to run in the default
-# redis db (127.0.0.1 on db 0, dumping to dump.rdb).
+# = Todo
+#
+# The `Todo` class is a model interacting with Redis.
+#
+# == Class Methods
+#
+# - {.create(name:)}::
+#   Creates a new todo item with the given `name`.
+#
+# - {.toggle(id:)}::
+#   Toggles the completion status of the todo item by `id`.
+#
+# - {.all}::
+#   Retrieves an array of hashes representing all todo items.
+#
+# - {.destroy_completed}::
+#   Deletes all completed todo items.
+#
+# - {.counts}::
+#   Returns hash of complete and incomplete todo items.
+#
 class Todo
   TODO_KEY_PREFIX = 'todos-app:todo:'
   INCOMPLETE_TODOS_KEY = 'todos-app:incomplete-todos'
